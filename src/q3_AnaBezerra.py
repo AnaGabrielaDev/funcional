@@ -38,10 +38,13 @@ tables = lambda: [
 def create_tables(tables):
     return lambda: [createDatabase(table["tableName"], table["properties"]) for table in tables]
 
+def create_tables(tables):
+    return [createDatabase(table["tableName"], table["properties"]) for table in tables]
+
 create = lambda : create_tables(tables())
 
 add = lambda : addRecord("users", "id, name, country", "1, 'Ana Gabriela', 'BR'")
-# search = queryRecord("users", "id = 1")
-# delete = deleteRecord("users", "id = 1")
+search = lambda : queryRecord("users", "id = 1")
+delete = lambda : deleteRecord("users", "id = 1")
 
-q3 = lambda: (create(), add())
+q3 = lambda: (create(), search())
