@@ -4,15 +4,10 @@ from unittest.mock import patch
 from io import StringIO
 
 class TestModule(unittest.TestCase):
-    @patch('sys.stdout', new_callable=StringIO)
-    def test_receive_cash_input(self, mock_stdout):
-        q1.receive_cash_input(12)
-        self.assertEqual(mock_stdout.getvalue(), 12)
-
-    @patch('builtins.input', return_value='100')
-    def test_receive_cash_input(self, input):
-        result = q1.receive_cash_input()
-        self.assertEqual(result, 100)
+    @patch('builtins.print')
+    def test_receive_cash(self, mock_print):
+        q1.receive_cash(100)
+        mock_print.assert_called_with("Payment Receipt of ", 100, '$')
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_cancel_transaction(self, mock_stdout):
@@ -23,6 +18,11 @@ class TestModule(unittest.TestCase):
     def test_close_transaction(self, mock_stdout):
         q1.close_transaction()
         self.assertEqual(mock_stdout.getvalue(), 'Close Transaction\n')
+
+    @patch('builtins.print')
+    def test_fund_transfer_details(self, mock_print):
+        q1.fund_transfer_details("user", "password")
+        mock_print.assert_called_with({"user": "user", "password": "*****"})
 
 stress_test_complete_transaction = lambda transaction_function, iterations: all(transaction_function() == 'Transaction completed!\n' for _ in range(iterations))
 
