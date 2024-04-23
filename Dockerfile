@@ -5,7 +5,8 @@ RUN pip install --upgrade pip
 RUN pip3 install pydevd-pycharm~=203.7148.72
 RUN pip3 install mysql-connector-python
 RUN pip3 install watchdog[watchmedo]
-
+RUN pip3 install flask
+RUN pip3 install werkzeug
 WORKDIR /app
 
 COPY . /app
