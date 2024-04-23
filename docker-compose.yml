@@ -16,7 +16,8 @@ services:
     volumes:
       - .:/app
       #RODAR COMANDO ABAIXO PARA CRIAR O VOLUME QUE FICA ATUALIZANDO (IDEAL PARA Q1,Q3,Q4, PRECISA ALTERAR O INDEX)
-    # command: ["watchmedo", "auto-restart", "-d", "/app", "-p", "'*.py'", "--", "python3", "src/index.py", flask", "run", "--host=0.0.0.0"]
+    # command: ["watchmedo", "auto-restart", "-d", "/app", "-p", "'*.py'", "--", "python3", "src/index.py"]
+    #Rodar comando para 5, sobe servidor
     command: ["flask", "run", "--host=0.0.0.0", "--reload"]
     #RODAR COMANDO ABAIXO PARA CRIAR O VOLUME APENAS UMA VEZ (IDEAL PARA Q2, PRECISA ALTERAR O INDEX)
     # command: ["python3", "src/index.py"]
